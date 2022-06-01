@@ -1,0 +1,35 @@
+<div class="mb-1" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchText" autocomplete="off" placeholder="Start search">
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 20px;">
+    <p-table [value]="devices$| async | filter:searchText" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]" [autoLayout]="true" >
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Type</th>
+                <th>Description</th>
+                <th>EmpID</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-device >
+            <tr >
+                <td>{{device.type}}</td>
+                <td>{{device.description}}</td>
+                <td>{{device.employeeid}}</td>
+                <td >
+                    <a pButton pRipple type="button" (click) ="remove(device)" [routerLink]="['/update-device',device.employeeid, device.type, device.description]" icon="pi pi-user-edit"
+                        class="p-button-rounded"></a>
+                    <a pButton pRipple type="button" (click)="remove(device)" style="margin-left: 0px;"
+                        icon="pi pi-trash" class="p-button-rounded"></a>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <a [routerLink]="['/add-device']" class="btn btn-primary">+ Add New Device</a>
+        </ng-template>
+    </p-table>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+    <form [formGroup]="employeeform" autocomplete="on" style="margin-top: 20px;">
+        <div class="mb-1">
+            <label for="name" class="form-label">Name</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': employeeform.get('name')?.invalid && 
+                (employeeform.get('name')?.dirty || employeeform.get('name')?.touched)}" id="name" name="name"
+                    formControlName="name" placeholder="Please Enter name">
+                <div class="invalid-feedback">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1">
+            <label for="email" class="form-label">Email</label>
+            <div class="input-group has-validation">
+                <input type="email" [ngClass]="{'form-control': true, 'is-invalid': employeeform.get('email')?.invalid && 
+                    (employeeform.get('email')?.dirty || employeeform.get('email')?.touched)}" id="email" name="email"
+                    formControlName="email" placeholder="xyz@gmail.com">
+                <div class="invalid-feedback">
+                    {{employeeform.get('email')?.hasError('required') ? 'This field is required.':'Invalid Email'}}
+                </div>
+            </div>
+        </div>
+        <div class="mb-1">
+            <label for="employeeid" class="form-label">EMP ID</label>
+            <div class="input-group has-validation">
+                <input type="number" maxlength="5" [ngClass]="{'form-control': true, 'is-invalid': employeeform.get('employeeid')?.invalid && 
+                (employeeform.get('employeeid')?.dirty || employeeform.get('employeeid')?.touched)}" id="employeeid" name="employeeid"
+                    formControlName="employeeid" placeholder="Employee ID">
+                <div class="invalid-feedback">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+        
+        <div class="mb-1">
+            <div class="btn-group" role="group">
+                <button (click)="save()" [disabled]="employeeform.invalid" class="btn btn-primary" type="button">
+                    {{employeeid==0 || employeeid==null ?'Save':'Update'}}</button>
+                <button class="btn btn-secondary" type="button" (click)="reset();">Reset </button>
+            </div>
+        </div>
+        <!--
+        <div class="mb-1">
+            {{employeeform.value |json}}
+        </div>
+        -->
+    </form>
+</div>

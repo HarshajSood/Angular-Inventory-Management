@@ -1,0 +1,33 @@
+<div class="mb-1" style="margin-top: 20px; margin-left: 20px; margin-right: 20px;">
+    <div class="input-group">
+        <input type="text" class="form-control" [(ngModel)]="searchText" autocomplete="off" placeholder="Start search">
+    </div>
+</div>
+<div class="container-fluid" style="margin-top: 20px;">
+    <p-table [value]="employees$ | async | filter:searchText" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]" [autoLayout]="true">
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Emp ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-empl >
+            <tr >
+                <td>{{empl.employeeid}}</td>
+                <td>{{empl.name}}</td>
+                <td>{{empl.email}}</td>
+                <td>
+                    <a pButton pRipple type="button" (click)="remove(empl)" [routerLink]="['/update-employee',empl.employeeid,empl.name,empl.email]" icon="pi pi-user-edit" class="p-button-rounded"></a>
+                    <a pButton pRipple type="button" (click)="remove(empl)" style="margin-left: 0px;" icon="pi pi-trash" class="p-button-rounded" b></a>
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="paginatorleft">
+            <a [routerLink]="['/add-employee']" class="btn btn-primary">+ Add New Employee</a>
+        </ng-template>
+    </p-table>
+</div>

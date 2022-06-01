@@ -1,0 +1,59 @@
+<div class="container">
+    <form [formGroup]="deviceform" autocomplete="off" style="margin-top: 20px;">
+        <div class="mb-1">
+            <label for="type" class="form-label">Type {{deviceform.get('type')?.value}} </label>
+            <div class="input-group has-validation">
+                <select [ngClass]="{'form-select': true, 'is-invalid': deviceform.get('type')?.invalid && 
+                    (deviceform.get('type')?.dirty || deviceform.get('type')?.touched)}"
+                    formControlName="type">
+                    <option value=""> --Select--</option>
+                    <option value="Laptop" selected="userform.get('type')?.value=='Laptop'">Laptop</option>
+                    <option value="Smartphone" selected="userform.get('type')?.value=='Smartphone'">Smartphone</option>
+                    <option value="SmartWatch" selected="userform.get('type')?.value=='SmartWatch'">Smartwatch</option>
+                    <option value="IPad" selected="userform.get('type')?.value=='IPad'">Ipad</option>
+                </select>
+                <div class="invalid-feedback">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-1">
+            <label for="description" class="form-label">Description</label>
+            <div class="input-group has-validation">
+                <input type="text" #name [ngClass]="{'form-control': true, 'is-invalid': deviceform.get('description')?.invalid && 
+                (deviceform.get('description')?.dirty || deviceform.get('description')?.touched)}" id="description" name="description"
+                    formControlName="description" placeholder="Please Enter Detailed Description">
+                <div class="invalid-feedback">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1">
+            <label for="empid" class="form-label">Emp ID </label>
+            <div class="input-group has-validation">
+                <select [ngClass]="{'form-select': true, 'is-invalid': deviceform.get('employeeid')?.invalid && 
+                    (deviceform.get('employeeid')?.dirty || deviceform.get('employeeid')?.touched)}"
+                    formControlName="employeeid">
+                    <option value=""> --Select--</option>
+                    <option *ngFor="let employee of emplist$ | async" value={{employee.employeeid}} selected="deviceform.get('employeeid')?.value=={employee.employeeid}">{{employee.employeeid}}</option>
+                </select>
+                <div class="invalid-feedback">
+                    This field is required.
+                </div>
+            </div>
+        </div>
+        <div class="mb-1">
+            <div class="btn-group" role="group">
+                <button (click)="save()" [disabled]="deviceform.invalid" class="btn btn-primary" type="button">
+                    {{employeeid==0 || employeeid==null ?'Save':'Update'}}</button>
+                <button class="btn btn-secondary" type="button" (click)="reset()">Reset </button>
+            </div>
+        </div>
+        <!--
+        <div class="mb-1">
+            {{deviceform.value |json}}
+        </div>
+        -->
+    </form>
+</div>
