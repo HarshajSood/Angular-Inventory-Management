@@ -9,9 +9,9 @@ export const addEmployee = createAction(
 export const deleteEmployee = createAction(
     '[Employee] remove employee',
     (employee:Employee) => ({employee})
-)
+);
 
 export const updateEmployee = createAction(
     '[Employee] update employee',
-    (employee:Employee) => ({employee})
-)
+    (id:number, empl:Employee) => ({id, empl}),
+);

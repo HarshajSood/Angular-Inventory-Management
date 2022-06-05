@@ -67,7 +67,8 @@ export class AddEmployeeComponent implements OnInit {
       //this.employeeService.addEmployee(this.employeeform.value);
     } else {
       //Update
-      this.store.dispatch(addEmployee(this.employeeform.value));
+      //this.store.dispatch(addEmployee(this.employeeform.value));
+      this.store.dispatch(updateEmployee(this.employeeid, this.employeeform.value));
     }
 
     //Redirecting 

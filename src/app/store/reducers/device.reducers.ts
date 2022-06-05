@@ -31,6 +31,11 @@ export const deviceReducer = createReducer(
         (state:DeviceState, {device})=>
         ({...state,
         devices:[...state.devices].filter(x=>x!=device)
+    })),
+    on(DeviceActions.updateDevice,
+        (state:DeviceState, {id, dev})=>
+        ({...state,
+        devices: state.devices.map(device => device.employeeid != id? device:dev) 
     }))
 );
 

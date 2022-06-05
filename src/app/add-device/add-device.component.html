@@ -36,6 +36,7 @@
                     (deviceform.get('employeeid')?.dirty || deviceform.get('employeeid')?.touched)}"
                     formControlName="employeeid">
                     <option value=""> --Select--</option>
+                    <option value="Unassigned" selected="userform.get('employeeid')?.value=='00000'">Unassigned</option>
                     <option *ngFor="let employee of emplist$ | async" value={{employee.employeeid}} selected="deviceform.get('employeeid')?.value=={employee.employeeid}">{{employee.employeeid}}</option>
                 </select>
                 <div class="invalid-feedback">

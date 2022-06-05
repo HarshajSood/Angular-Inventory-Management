@@ -1,3 +1,4 @@
+import { elementEventFullName } from "@angular/compiler/src/view_compiler/view_compiler";
 import { Action, createReducer, on } from "@ngrx/store";
 import { Employee } from "src/app/employee";
 import * as EmployeeActions from "../actions/employee.actions"
@@ -36,6 +37,11 @@ export const employeeReducer = createReducer(
         (state:EmployeeState, {employee})=>
         ({...state,
         employees:[...state.employees].filter(x=>x!=employee)
+    })),
+    on(EmployeeActions.updateEmployee,
+        (state:EmployeeState, {id, empl})=>
+        ({...state,
+        employees: state.employees.map(employee => employee.employeeid != id? employee:empl) 
     }))
 );
 

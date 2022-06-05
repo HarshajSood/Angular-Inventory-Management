@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Employee } from '../employee';
 import { DeviceService } from '../service/device.service';
 import { EmployeeService } from '../service/employee.service';
-import { addDevice } from '../store/actions/device.actions';
+import { addDevice, updateDevice } from '../store/actions/device.actions';
 import { selectEmployees } from '../store/selectors/employee.selectors';
 
 @Component({
@@ -73,7 +73,7 @@ export class AddDeviceComponent implements OnInit {
       this.store.dispatch(addDevice(this.deviceform.value));
     } else {
       //Update 
-      this.store.dispatch(addDevice(this.deviceform.value));
+      this.store.dispatch(updateDevice(this.employeeid, this.deviceform.value))
     }
 
     //Redirecting

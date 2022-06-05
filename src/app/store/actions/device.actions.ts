@@ -13,5 +13,5 @@ export const deleteDevice = createAction(
 
 export const updateDevice = createAction(
     '[Device] update device',
-    (device:Device) => ({device})
+    (id:number, dev:Device) => ({id, dev})
 )
