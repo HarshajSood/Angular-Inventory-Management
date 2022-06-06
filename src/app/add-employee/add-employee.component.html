@@ -36,7 +36,7 @@
         
         <div class="mb-1">
             <div class="btn-group" role="group">
-                <button (click)="save()" [disabled]="employeeform.invalid" class="btn btn-primary" type="button">
+                <button id="upadd" name="upadd" (click)="save()"  [disabled]="employeeform.invalid" class="btn btn-primary" type="button">
                     {{employeeid==0 || employeeid==null ?'Save':'Update'}}</button>
                 <button class="btn btn-secondary" type="button" (click)="reset();">Reset </button>
             </div>

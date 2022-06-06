@@ -21,7 +21,7 @@
                 <td>{{empl.name}}</td>
                 <td>{{empl.email}}</td>
                 <td>
-                    <a pButton pRipple type="button"  [routerLink]="['/update-employee',empl.employeeid,empl.name,empl.email]" icon="pi pi-user-edit" class="p-button-rounded"></a>
+                    <a pButton pRipple type="button"  [routerLink]="['/update-employee',empl.employeeid,empl.name,empl.email, 0]" icon="pi pi-user-edit" class="p-button-rounded"></a>
                     <a pButton pRipple type="button" (click)="remove(empl)" style="margin-left: 0px;" icon="pi pi-trash" class="p-button-rounded" b></a>
                 </td>
             </tr>

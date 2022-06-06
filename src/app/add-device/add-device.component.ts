@@ -20,6 +20,7 @@ export class AddDeviceComponent implements OnInit {
   type:string = '';
   description:string = '';
   deviceform: FormGroup;
+  k:number=1;
 
   employeeList:Employee[]=[];
 
@@ -49,6 +50,7 @@ export class AddDeviceComponent implements OnInit {
     this.employeeList=this.employeeService.getEmployee();
     this.route.params.subscribe(params => {
       this.employeeid = params['employeeid'];
+      this.k =params['upadd'];
       if (params['employeeid'] != null) {
         this.deviceform.get('employeeid')?.setValue(params['employeeid']);
         this.deviceform.get('type')?.setValue(params['type']);
@@ -68,12 +70,13 @@ export class AddDeviceComponent implements OnInit {
     if (this.deviceform.invalid)
       return
 
-    if (this.deviceform.get('employeeid')?.value === 0) {
+    if (this.k == 0) {
       //New 
-      this.store.dispatch(addDevice(this.deviceform.value));
+      this.store.dispatch(updateDevice(this.employeeid, this.type, this.description, this.deviceform.value))
+      
     } else {
       //Update 
-      this.store.dispatch(updateDevice(this.employeeid, this.deviceform.value))
+      this.store.dispatch(addDevice(this.deviceform.value));
     }
 
     //Redirecting

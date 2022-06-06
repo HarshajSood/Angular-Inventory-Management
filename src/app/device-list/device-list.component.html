@@ -21,7 +21,7 @@
                 <td>{{device.description}}</td>
                 <td>{{device.employeeid}}</td>
                 <td >
-                    <a pButton pRipple type="button"  [routerLink]="['/update-device',device.employeeid, device.type, device.description]" icon="pi pi-user-edit"
+                    <a pButton pRipple type="button"  [routerLink]="['/update-device',device.employeeid, device.type, device.description, 0]" icon="pi pi-user-edit"
                         class="p-button-rounded"></a>
                     <a pButton pRipple type="button" (click)="remove(device)" style="margin-left: 0px;"
                         icon="pi pi-trash" class="p-button-rounded"></a>

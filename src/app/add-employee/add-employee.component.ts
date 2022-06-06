@@ -19,6 +19,7 @@ export class AddEmployeeComponent implements OnInit {
   name:string='';
   email:string='';
   employeeform:FormGroup;
+  k:number=1;
 
 
   constructor(
@@ -32,7 +33,7 @@ export class AddEmployeeComponent implements OnInit {
       eid: [0, [Validators.required]],
       name: ['',[Validators.required]],
       email: ['', [Validators.required, Validators.email, Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-      employeeid: ['',[Validators.required]]
+      employeeid: [0,[]]
     });
    }
 
@@ -41,14 +42,11 @@ export class AddEmployeeComponent implements OnInit {
       this.employeeid = params['employeeid'];
       this.name = params['name'];
       this.email =params['email'];
+      this.k=params['upadd'];
       if (params['employeeid'] != null) {
         this.employeeform.get('employeeid')?.setValue(params['employeeid']);
         this.employeeform.get('name')?.setValue(params['name']);
         this.employeeform.get('email')?.setValue(params['email'])
-        const data = this.store.pipe(select(selectbyid(this.employeeid)))
-        if (data) {
-          this.employeeform.setValue(data);
-        }
       }
     });
   }
@@ -61,14 +59,16 @@ export class AddEmployeeComponent implements OnInit {
     if (this.employeeform.invalid)
       return
 
-    if (this.employeeform.get('employeeid')?.value === 0) {
+    
+    if (this.k == 0) {
       //New
-      this.store.dispatch(addEmployee(this.employeeform.value));
+      this.store.dispatch(updateEmployee(this.employeeid, this.employeeform.value));
+      
       //this.employeeService.addEmployee(this.employeeform.value);
     } else {
       //Update
       //this.store.dispatch(addEmployee(this.employeeform.value));
-      this.store.dispatch(updateEmployee(this.employeeid, this.employeeform.value));
+      this.store.dispatch(addEmployee(this.employeeform.value));
     }
 
     //Redirecting 

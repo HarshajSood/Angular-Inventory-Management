@@ -11,10 +11,10 @@ const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'device', component: DeviceListComponent},
   { path: 'add-device', component: AddDeviceComponent},
-  { path: 'update-device/:employeeid/:type/:description', component: AddDeviceComponent},
+  { path: 'update-device/:employeeid/:type/:description/:upadd', component: AddDeviceComponent},
   { path: 'employee', component: EmployeeListComponent},
   { path: 'add-employee', component: AddEmployeeComponent},
-  { path: 'update-employee/:employeeid/:name/:email', component: AddEmployeeComponent}
+  { path: 'update-employee/:employeeid/:name/:email/:upadd', component: AddEmployeeComponent}
 ];
 
 @NgModule({
